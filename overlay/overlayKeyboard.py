@@ -3,10 +3,10 @@ from imageResize.imageResize import imageResize
 from overlay.addText import addText
 
 
-def overlayWarranty(logoPath, bgPath, warrantyText, fontPath, fontSize, fontColor, show=False):
+def overlayKeyboard(logoPath, bgPath, warrantyText, fontPath, fontSize, fontColor, show=False):
     print()
     print("======================")
-    print("OVERLAY_WARRANTY START")
+    print("OVERLAY_KEYBOARD START")
     prodImage = Image.open(logoPath)
     bgImage = Image.open(bgPath)
     print(f"Image opened from {logoPath}")
@@ -23,10 +23,10 @@ def overlayWarranty(logoPath, bgPath, warrantyText, fontPath, fontSize, fontColo
     imageResize(logoPath, ratio, "temp/resizedImg.png")
     prodImageNew = Image.open("temp/resizedImg.png")
     prodWidthNew, prodHeightNew = prodImageNew.size
-    position = (int(prodWidthNew * 0.03), int(bgHeight - prodHeightNew * 1.03))
+    position = (int(prodWidthNew * 0.03), 0)
     bgImage.paste(prodImageNew, position, prodImageNew)
     print("Image overlayed")
     bgImage.save("temp/Overlay.jpg")
-    textPosition = (int(position[0] + prodWidthNew * 0.9), int(position[1] + 0.65 * prodHeightNew))
+    textPosition = (int(position[0] + prodWidthNew * 0.9), int(position[1] + prodHeightNew * 0.25))
     addText(warrantyText, textPosition, fontPath, fontSize, fontColor, show)
     print("Image saved to temp/Overlay.jpg")
